@@ -27,14 +27,15 @@ const passwordValidationRegex = new RegExp(
 );
 
 const formSchema = z.object({
-  email: z.email("Email tidak valid"),
+  email: z.email("Email tidak valid").nonempty({ error: "Email wajib diisi." }),
   password: z
     .string("Sandi tidak valid")
-    .min(6, "Panjang sandi minimal 6 karakter")
-    .regex(passwordValidationRegex, {
-      error:
-        "Sandi harus terdiri dari setidaknya satu huruf kapital, satu huruf kecil, dan satu karakter spesial.",
-    }),
+    .nonempty({ error: "Sandi wajib diisi." }),
+  // .min(6, "Panjang sandi minimal 6 karakter")
+  // .regex(passwordValidationRegex, {
+  //   error:
+  //     "Sandi harus terdiri dari setidaknya satu huruf kapital, satu huruf kecil, dan satu karakter spesial.",
+  // }),
 });
 
 export function TeacherLoginForm({

@@ -21,6 +21,8 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "./ui/badge";
 import z from "zod";
 import { useForm } from "@tanstack/react-form-nextjs";
+import { Alert, AlertDescription } from "./ui/alert";
+import { InfoIcon } from "lucide-react";
 
 const passwordValidationRegex = new RegExp(
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
@@ -67,7 +69,11 @@ export function TeacherLoginForm({
             Masuk untuk mengelola aktivitas belajar dan akun kelompok.
           </CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className="flex flex-col gap-4">
+          <Alert variant="destructive">
+            <InfoIcon />
+            <AlertDescription>Email atau sandi salah</AlertDescription>
+          </Alert>
           <form
             onSubmit={(e) => {
               e.preventDefault();

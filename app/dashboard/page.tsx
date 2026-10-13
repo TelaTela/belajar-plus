@@ -2,10 +2,11 @@ import { RecentActivityList } from "@/components/recent-activity";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import Link from "next/link";
 
-export default function DashboardGuru() {
+export default function TeacherDashboard() {
   return (
-    <main className="flex flex-col gap-8 px-16 py-8">
+    <>
       <div className="flex flex-col gap-4">
         <div className="flex flex-row justify-between items-center">
           <div>
@@ -37,13 +38,13 @@ export default function DashboardGuru() {
 
           <div>
             <Button size="lg" variant="link" className="h-12">
-              Lihat semua aktivitas
+              <Link href="/activities">Lihat semua aktivitas</Link>
             </Button>
           </div>
         </div>
 
         <RecentActivityList />
       </div>
-    </main>
+    </>
   );
 }

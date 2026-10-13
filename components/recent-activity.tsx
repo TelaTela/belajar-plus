@@ -1,19 +1,20 @@
 import { VariantProps } from "class-variance-authority";
 import { Badge, badgeVariants } from "./ui/badge";
 import { Card, CardContent } from "./ui/card";
-import recentActivities from "@/lib/mock-data/recent-activities";
+import {
+  type Activity,
+  getRecent as getRecentActivities,
+} from "@/lib/mock-data/activities";
+import { Button } from "./ui/button";
+import { EllipsisVerticalIcon, SquarePenIcon, TrashIcon } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
 
-type RecentActivityCardProps = {
-  name: string;
-  isActive: boolean;
-  updatedAt: Date;
-};
-
-function RecentActivityCard({
-  name,
-  isActive,
-  updatedAt,
-}: RecentActivityCardProps) {
+function RecentActivityCard({ name, isActive, updatedAt }: Activity) {
   let badgeVariant: VariantProps<typeof badgeVariants>["variant"] = isActive
     ? "success"
     : "destructive";
@@ -24,7 +25,7 @@ function RecentActivityCard({
 
   return (
     <Card>
-      <CardContent className="grid grid-cols-5">
+      <CardContent className="grid grid-cols-5 items-center">
         <div className="col-span-4">
           <div className="flex justify-between">
             <h1 className="font-semibold">{name}</h1>
@@ -33,10 +34,31 @@ function RecentActivityCard({
                 {badgeTitle}
               </Badge>
               <span className="text-sm text-muted-foreground">
-                {diffInDays <= 7 ? `Diperbarui ${diffInDays} hari yang lalu` : updatedAt.toLocaleDateString()}
+                {diffInDays <= 7
+                  ? `Diperbarui ${diffInDays} hari yang lalu`
+                  : updatedAt.toLocaleDateString()}
               </span>
             </div>
           </div>
+        </div>
+        <div className="col-span-1 flex flex-row justify-end">
+          <DropdownMenu>
+            <DropdownMenuTrigger
+              render={<Button variant="outline" size="icon-lg" />}
+            >
+              <EllipsisVerticalIcon />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuItem>
+                <SquarePenIcon />
+                Kelola
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <TrashIcon />
+                Hapus
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </CardContent>
     </Card>
@@ -45,8 +67,8 @@ function RecentActivityCard({
 
 function RecentActivityList() {
   return (
-    <div className="flex flex-col gap-2">
-      {recentActivities.map((activity, index) => (
+    <div className="flex flex-col gap-3">
+      {getRecentActivities().map((activity, index) => (
         <RecentActivityCard key={index} {...activity} />
       ))}
     </div>

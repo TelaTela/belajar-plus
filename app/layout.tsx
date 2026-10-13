@@ -26,7 +26,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="flex min-h-svh flex-col bg-background text-foreground antialiased">
         <SiteHeader />
-        {children}
+        <main className="flex flex-col gap-8 px-16 py-8">{children}</main>
       </body>
     </html>
   );

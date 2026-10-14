@@ -1,4 +1,5 @@
 import { ActivityList } from "@/components/activity-list";
+import { PageSectionTitle } from "@/components/page-section-title";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -14,20 +15,15 @@ export default function ActivityListPage() {
   return (
     <>
       <div className="flex flex-col gap-4">
-        <div className="flex flex-row justify-between items-center">
-          <div>
-            <h1 className="text-2xl font-semibold">Daftar Aktivitas</h1>
-            <span className="text-sm text-muted-foreground">
-              Kelola aktivitas, status publikasi, dan materi kerja kelompok.
-            </span>
-          </div>
-
-          <div>
+        <PageSectionTitle
+          title="Daftar Aktivitas"
+          description="Kelola aktivitas, status publikasi, dan materi kerja kelompok."
+          actions={
             <Button size="lg" className="h-12">
               Buat Aktivitas
             </Button>
-          </div>
-        </div>
+          }
+        />
       </div>
 
       <div className="flex flex-col gap-4">

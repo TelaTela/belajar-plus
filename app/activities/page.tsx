@@ -10,6 +10,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ChevronDownIcon, EllipsisVerticalIcon } from "lucide-react";
+import Link from "next/link";
 
 export default function ActivityListPage() {
   return (
@@ -19,9 +20,11 @@ export default function ActivityListPage() {
           title="Daftar Aktivitas"
           description="Kelola aktivitas, status publikasi, dan materi kerja kelompok."
           actions={
-            <Button size="lg" className="h-12">
-              Buat Aktivitas
-            </Button>
+            <Link href="/activities/new">
+              <Button size="lg" className="h-12">
+                Buat Aktivitas
+              </Button>
+            </Link>
           }
         />
       </div>

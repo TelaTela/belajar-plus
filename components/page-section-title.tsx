@@ -18,7 +18,7 @@ function PageSectionTitle({
         )}
       </div>
 
-      {actions ?? <div>{actions}</div>}
+      {actions && <div className="flex gap-2">{actions}</div>}
     </div>
   );
 }

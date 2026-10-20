@@ -10,8 +10,14 @@ import { Badge, badgeVariants } from "./ui/badge";
 import { Button } from "./ui/button";
 import { EllipsisVerticalIcon } from "lucide-react";
 import { type VariantProps } from "class-variance-authority";
+import Link from "next/link";
 
-function ActivityCard({ name, isActive, updatedAt }: Activity) {
+function ActivityCard({
+  id,
+  name,
+  is_active: isActive,
+  updated_at: updatedAt,
+}: Activity) {
   let badgeVariant: VariantProps<typeof badgeVariants>["variant"] = isActive
     ? "success"
     : "destructive";
@@ -31,7 +37,9 @@ function ActivityCard({ name, isActive, updatedAt }: Activity) {
         </CardDescription>
       </CardHeader>
       <CardFooter className="gap-2">
-        <Button className="grow">Kelola Aktivitas</Button>
+        <Link className="grow" href={`/activities/${id}`}>
+          <Button className="w-full">Kelola Aktivitas</Button>
+        </Link>
         <Button variant="outline" size="icon">
           <EllipsisVerticalIcon />
         </Button>
@@ -44,7 +52,7 @@ function ActivityList() {
   return (
     <div className="grid grid-cols-4 gap-4">
       {activities.map((activity, index) => (
-        <ActivityCard key={index} {...activity} />
+        <ActivityCard key={activity.id} {...activity} />
       ))}
     </div>
   );

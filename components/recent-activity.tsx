@@ -14,7 +14,11 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 
-function RecentActivityCard({ name, isActive, updatedAt }: Activity) {
+function RecentActivityCard({
+  name,
+  is_active: isActive,
+  updated_at: updatedAt,
+}: Activity) {
   let badgeVariant: VariantProps<typeof badgeVariants>["variant"] = isActive
     ? "success"
     : "destructive";

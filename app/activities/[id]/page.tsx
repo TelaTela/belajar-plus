@@ -1,8 +1,4 @@
-import {
-  QuizCard,
-  QuizIsEmpty,
-  QuizList,
-} from "@/components/activity-quiz-list";
+import { QuizIsEmpty, QuizList } from "@/components/activity-quiz-list";
 import { PageSectionTitle } from "@/components/page-section-title";
 import { Button } from "@/components/ui/button";
 import {
@@ -15,12 +11,20 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import {
-  Progress,
-  ProgressLabel,
-  ProgressValue,
-} from "@/components/ui/progress";
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { getActivity } from "@/lib/mock-data/activities";
-import { CircleAlertIcon, PlusIcon, TriangleAlertIcon } from "lucide-react";
+import {
+  EllipsisVerticalIcon,
+  PlusIcon,
+  ShieldCheckIcon,
+  SquarePenIcon,
+  TimerResetIcon,
+  TrashIcon,
+} from "lucide-react";
 
 export default async function ActivityDetailPage({
   params,
@@ -48,7 +52,29 @@ export default async function ActivityDetailPage({
           description={`Diperbarui tanggal ${activity.updated_at.toDateString()}`}
           actions={
             <>
-              <Button className="h-12">Perbarui Informasi</Button>
+              <Button className="h-12">
+                <SquarePenIcon data-icon="inline-start" /> Perbarui Informasi
+              </Button>
+              <DropdownMenu>
+                <DropdownMenuTrigger
+                  render={
+                    <Button variant="outline" size="icon" className="size-12">
+                      <EllipsisVerticalIcon />
+                    </Button>
+                  }
+                />
+                <DropdownMenuContent className="w-full">
+                  <DropdownMenuItem>
+                    <ShieldCheckIcon /> Aktifkan Aktivitas
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <TimerResetIcon /> Reset Aktivitas
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <TrashIcon /> Hapus Aktivitas
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </>
           }
         />

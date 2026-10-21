@@ -12,6 +12,7 @@ import {
 } from "./ui/card";
 import { Progress, ProgressLabel, ProgressValue } from "./ui/progress";
 import { Quiz } from "@/lib/mock-data/activities";
+import Link from "next/link";
 
 function QuizIsEmpty() {
   return (
@@ -52,7 +53,9 @@ function QuizCard({ quiz }: { quiz: Quiz }) {
         </Progress>
       </CardContent>
       <CardFooter className="flex">
-        <Button className="grow">Kelola Kuis</Button>
+        <Link className="grow" href={`/activities/${quiz.activity_id}/quizzes/${quiz.id}`}>
+          <Button className="w-full">Kelola Kuis</Button>
+        </Link>
       </CardFooter>
     </Card>
   );

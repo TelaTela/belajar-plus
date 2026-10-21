@@ -73,6 +73,10 @@ function getActivity(id: string) {
   return activities.find((activity) => activity.id === id);
 }
 
-export { activities, getRecent, getActivity };
+function getQuiz(activityId: string, quizId: string) {
+  return getActivity(activityId)?.quizzes?.find((quiz) => quiz.id === quizId);
+}
+
+export { activities, getRecent, getActivity, getQuiz };
 
 export type { Activity, Quiz };
